@@ -24,8 +24,10 @@ class Subscriber:
     def calc_frequency(self):
         while self.do_work:
             print('\rfrequency: {} Hz; '.format(self.frequency), end = '')
-            cpu_load = os.popen('''top -bn1 | grep "Cpu(s)" | sed "s/.*, *\\([0-9.]*\\)%* id.*/\\1/" | awk '{print 100 - $1"%"}' ''').readline().rstrip()
-            print('cpu: {} '.format(cpu_load), end = '')
+            mosquitto_cpu_usage = os.popen('''pgrep -x mosquitto | xargs top -bn1 -p | grep mosquitto | awk '{print $9}' ''').readline().rstrip()
+            overall_cpu_usage = os.popen('''top -bn1 | grep "Cpu(s)" | sed "s/.*, *\\([0-9.]*\\)%* id.*/\\1/" | awk '{print 100 - $1"%"}' ''').readline().rstrip()
+            print('overall cpu usage: {} '.format(overall_cpu_usage), end = '')
+            print('; mosquitto cpu usage: {}% '.format(mosquitto_cpu_usage), end = '')
             counter = 0
             start = time.time()
             for i in iter(self.proc.stdout.readline, ''):
