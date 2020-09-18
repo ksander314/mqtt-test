@@ -20,7 +20,7 @@ class Subscriber:
     def wait(self):
         self.proc.wait()
     def sub_data(self):
-        self.proc = Popen(['mosquitto_sub', '-h', 'localhost', '-p', '8883', '-t', 'abc', '--cafile', '../../certs/ca.crt', '--cert', '../../certs/client.crt', '--key', '../../certs/client.key'], stdout = PIPE);
+        self.proc = Popen(['mosquitto_sub', '-h', '192.168.100.199', '-p', '8883', '-t', 'abc', '--cafile', '../../certs/ca.crt', '--cert', '../../certs/client.crt', '--key', '../../certs/client.key'], stdout = PIPE);
     def calc_frequency(self):
         while self.do_work:
             print('\rfrequency: {} Hz; '.format(self.frequency), end = '')
