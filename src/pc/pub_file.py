@@ -13,7 +13,7 @@ def pub_data_from_file(arg):
 class Args:
     frequency = 1
     file_name = ""
-    host = "localhost"
+    host = "192.168.100.199"
     port = "8883"
     topic = "abc"
     usage = f'usage:\n\t {argv[0]} PATH_TO_FILE FREQUENCY_IN_HZ'
