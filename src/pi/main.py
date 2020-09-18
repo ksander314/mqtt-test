@@ -16,7 +16,7 @@ class Mosquitto:
     def wait(self):
         self.proc.wait()
     def start(self):
-        self.proc = Popen(['mosquitto', '-c', '../../cfg/mosquitto.conf'], stdout = PIPE);
+        self.proc = Popen(['mosquitto', '-c', '../../cfg/mosquitto.conf'], stdout = DEVNULL, stderr = DEVNULL);
 
 class Subscriber:
     proc = None
@@ -25,7 +25,7 @@ class Subscriber:
     def wait(self):
         self.proc.wait()
     def start(self):
-        self.proc = Popen(['./sub_file.py'], stdout = PIPE);
+        self.proc = Popen(['./sub_file.py']);
 
 subscriber = Subscriber()
 mosquitto = Mosquitto()
